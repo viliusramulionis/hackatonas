@@ -27,4 +27,6 @@ def get_users():
 def new_user():
     cur.execute("INSERT INTO users (name, email, password) VALUES('Jonas', 'jonas@gmail.com', '123456');")
     con.commit()
-    return "Hello, World!"
+
+    return "New user successfully created"
+
