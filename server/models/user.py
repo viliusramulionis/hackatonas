@@ -7,7 +7,7 @@ class User(Database) :
         super().__init__()
 
         # Sukuriama naudojama lentelė user
-        self.cur.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(255), email VARCHAR(255), password VARCHAR(255));")
+        self.cur.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(255), email VARCHAR(255), password VARCHAR(255), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);")
         
         # Nurodymas neleisti registruoti vartotojų tokiu pačiu el. pašto adresu
         self.cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS user_email ON users(email);")
@@ -24,32 +24,17 @@ class User(Database) :
 
     # Vienos eilutės pridėjimas
     def insert_row(self, data) :
-        self.cur.execute(f"INSERT INTO users (name, email, password) VALUES('{data["name"]}', '{data["email"]}', {data["password"]});")
+        self.cur.execute(
+            f"INSERT INTO users (name, email, password) VALUES('{data['name']}', '{data['email']}', '{data["password"]}')")
         self.con.commit()
         return self
 
     # Eilutės atnaujinimas nurodant įrašo id ir modifikuotą informaciją
     def update_row(self, id, data) :
-        self.cur.execute(f"UPDATE users SET name = '{data["name"]}', email = '{data["email"]}', password = {data["password"]} WHERE id = {id};")
+        self.cur.execute(f"UPDATE users SET name = '{data["name"]}', email = '{data["email"]}', password = {data["password"]}, updated_at = CURRENT_TIMESTAMP WHERE id = {id}")
         return self
 
     # Eilutės ištrynimas nurodant įrašo id
     def delete_row(self, id):
         self.cur.execute(f"DELETE FROM users WHERE id = {id};")
         return self
-    
-    # Konvertuoja fetchall() metodo rezultatą iš tuple į dictionary 
-    def fetchall_as_dict(self):
-        columns = [col[0] for col in self.cur.description]
-        return [dict(zip(columns, row)) for row in self.cur.fetchall()]
-    
-    # Kovertuoja fetchone() metodo rezultątą iš tuple į dictionary
-    def fetchone_as_dict(self):
-        row = self.cur.fetchone()
-        if row is None:
-            return None
-        columns = [col[0] for col in self.cur.description]
-        return dict(zip(columns, row))
-
-    def __del__(self) :
-        self.con.close()

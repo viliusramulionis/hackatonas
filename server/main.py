@@ -2,14 +2,7 @@
 from flask import Flask
 from controllers.users import user
 from flask_cors import CORS
-
-from models.budy import Budy
-from models.budy_interests import Budy_interets
-from models.interests import Interets
-
-Budy()
-Budy_interets()
-Interets()
+from controllers.budy import budy
 
 app = Flask(__name__)
 
@@ -19,3 +12,6 @@ CORS(app)
 
 # Kontrolerio priregistravimas prie bendros aplikacijos
 app.register_blueprint(user, url_prefix='/api/users')
+
+#budy priregistravimas
+app.register_blueprint(budy, url_prefix='/api/budies')
