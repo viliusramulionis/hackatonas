@@ -1,11 +1,19 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const BuddyCardDetailed = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const [buddy, setBuddy] = useState(null);
   const [error, setError] = useState("");
+
+  // Simulate logged-in user, replace with your auth/user logic
+  const currentUser = {
+    id: "123", // example user ID
+    name: "Logged User",
+  };
 
   useEffect(() => {
     axios
@@ -29,6 +37,9 @@ const BuddyCardDetailed = () => {
       </p>
     );
   }
+
+  // Check if logged-in user matches buddy's id to show Edit button
+  const showEditButton = currentUser && currentUser.id === buddy.id;
 
   return (
     <div className="min-h-screen flex items-center justify-center px-6 py-12 sm:px-12 sm:py-24">
@@ -84,6 +95,16 @@ const BuddyCardDetailed = () => {
               <BigButton text="GitHub" url={buddy.github_url} />
             )}
           </div>
+
+          {/* Edit Profile Button: Only if user logged in and id matches */}
+          {showEditButton && (
+            <button
+              onClick={() => navigate("/edit/profile")}
+              className="mt-8 inline-block bg-indigo-600 text-white text-lg font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-indigo-700 transition"
+            >
+              Edit Profile
+            </button>
+          )}
         </div>
       </div>
     </div>
