@@ -17,7 +17,6 @@ class User(Database) :
         self.cur.execute("SELECT * FROM users;")
         return self.fetchall_as_dict()
 
-
     # Vienos eilutės sugrąžinimas
     def get_row(self, id) :
         self.cur.execute(f"SELECT * FROM users WHERE id = {id};")

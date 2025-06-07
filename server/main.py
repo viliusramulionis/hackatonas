@@ -2,10 +2,9 @@
 from flask import Flask
 from controllers.users import user
 from flask_cors import CORS
-
-from models.budy import Budy
-
-Budy()
+from controllers.budy import budy
+from controllers.interests import interests
+from controllers.languages import languages
 
 app = Flask(__name__)
 
@@ -15,3 +14,12 @@ CORS(app)
 
 # Kontrolerio priregistravimas prie bendros aplikacijos
 app.register_blueprint(user, url_prefix='/api/users')
+
+#budy priregistravimas
+app.register_blueprint(budy, url_prefix='/api/budies')
+
+#interests priregistravimas
+app.register_blueprint(interests, url_prefix='/api/interests')
+
+#languages priregistravimas
+app.register_blueprint(languages, url_prefix='/api/languages')
