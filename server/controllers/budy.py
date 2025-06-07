@@ -37,6 +37,13 @@ def get_one(id):
     except :
         return jsonify("Atsiprašome, tačiau nepavyko gauti duomenų, bandykite dar kartą."), 500
 
+
+# BUDZIO KALBOS
+@budy.route("/languages/<int:id>", methods=['GET'])
+def get_languages(id):
+    return jsonify(budy_model.get_budy_languages(id)), 200
+
+
 # NAUJO VARTOTOJO KURIMAS
 @budy.route("/", methods=['POST'])
 def create():

@@ -43,7 +43,11 @@ const BuddyCardDetailed = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-6 py-12 sm:px-12 sm:py-24">
+<<<<<<< HEAD
+      <div className="max-w-4xl w-full bg-white rounded-3xl shadow-2xl flex flex-col md:flex-row gap-10 sm:gap-16 p-8 sm:p-16">
+=======
       <div className="max-w-4xl w-full bg-[#f3f4f6] rounded-3xl shadow-2xl flex flex-col md:flex-row gap-10 sm:gap-16 p-8 sm:p-16">
+>>>>>>> 3eb94db0b58fce91cb6759633d463e6c7650cd6f
         <div className="flex-shrink-0 flex justify-center items-center md:items-center">
           <img
             src={buddy.photo}
