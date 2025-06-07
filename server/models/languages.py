@@ -8,18 +8,22 @@ class Languages(Database) :
 
         # Sukuriama naudojama lentelė user
         self.cur.execute("CREATE TABLE IF NOT EXISTS languages (id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(255), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
-       
+        self.cur.execute("INSERT INTO languages (title) VALUES('Python')")
+        self.cur.execute("INSERT INTO languages (title) VALUES('Javascript')")
+        self.cur.execute("INSERT INTO languages (title) VALUES('C++')")
+        self.cur.execute("INSERT INTO languages (title) VALUES('Java')")
+        self.cur.execute("INSERT INTO languages (title) VALUES('Go')")
+        self.cur.execute("INSERT INTO languages (title) VALUES('Ruby')")
+        self.cur.execute("INSERT INTO languages (title) VALUES('SQL')")
+        self.cur.execute("INSERT INTO languages (title) VALUES('Other')")
+        self.con.commit()
+
+
  # Visų eilučių sugrąžinimas
     def get_rows(self) :
         self.cur.execute("SELECT * FROM languages;")
         return self.fetchall_as_dict()
 
- # Eilutės atnaujinimas nurodant įrašo id ir modifikuotą informaciją
-    def update_row(self, id, data) :
-        self.cur.execute(f"UPDATE languages SET title = '{data['title']}', updated_at = CURRENT_TIMESTAMP WHERE id = {id}")
-        return self
+     
 
-# Eilutės ištrynimas nurodant įrašo id
-    def delete_row(self, id):
-        self.cur.execute(f"DELETE FROM languages WHERE id = {id}")
-        return self
+

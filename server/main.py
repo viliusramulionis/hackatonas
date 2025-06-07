@@ -4,7 +4,6 @@ from controllers.users import user
 from flask_cors import CORS
 from controllers.budy import budy
 
-
 app = Flask(__name__)
 
 # Nurodymas iš kur leidžiame priimti užklausas

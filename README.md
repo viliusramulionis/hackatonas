@@ -3,4 +3,4 @@
 ## Serverio paleidimas:
     cd server
     pip install -r requirements.txt
-    flask --app main.py --debug run  
+    py -m flask --app main.py --debug run  
