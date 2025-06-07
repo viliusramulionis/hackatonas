@@ -3,6 +3,10 @@ from flask import Flask
 from controllers.users import user
 from flask_cors import CORS
 
+from models.budy import Budy
+
+Budy()
+
 app = Flask(__name__)
 
 # Nurodymas iš kur leidžiame priimti užklausas
