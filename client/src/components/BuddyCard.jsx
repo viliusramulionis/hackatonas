@@ -15,9 +15,6 @@ const BuddyCard = ({ buddy, onClick }) => {
       <h3 className="mt-4 text-lg font-semibold text-gray-800 dark:text-white">
         {buddy.name}
       </h3>
-      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-        {buddy.role || "Team Member"}
-      </p>
     </div>
   );
 };
