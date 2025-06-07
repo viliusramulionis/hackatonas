@@ -9,7 +9,7 @@ const MainPage = () => {
 
   useEffect(() => {
     axios
-      .get("/api/users")
+      .get("/api/budies")
       .then((res) => {
         setBuddies(res.data);
         setLoading(false);
