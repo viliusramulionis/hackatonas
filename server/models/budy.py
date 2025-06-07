@@ -1,5 +1,8 @@
 from database import Database
 
+from models.languages import Languages
+
+Languages()
 class Budy(Database) :
     # Kontruktorius
     def __init__(self) :
