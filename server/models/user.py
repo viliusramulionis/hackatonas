@@ -17,7 +17,6 @@ class User(Database) :
         self.cur.execute("SELECT * FROM users;")
         return self.fetchall_as_dict()
 
-
     # Vienos eilutės sugrąžinimas
     def get_row(self, id) :
         self.cur.execute(f"SELECT * FROM users WHERE id = {id};")
@@ -25,13 +24,14 @@ class User(Database) :
 
     # Vienos eilutės pridėjimas
     def insert_row(self, data) :
-        self.cur.execute(f"INSERT INTO users (name, email, password, created_at, updated_at) VALUES('{data["name"]}', '{data["email"]}', {data["password"]}, {TIMESTAMP DEFAULT CURRENT_TIMESTAMP["created_at"]}')
+        self.cur.execute(
+            f"INSERT INTO users (name, email, password) VALUES('{data['name']}', '{data['email']}', '{data["password"]}')")
         self.con.commit()
         return self
 
     # Eilutės atnaujinimas nurodant įrašo id ir modifikuotą informaciją
     def update_row(self, id, data) :
-        self.cur.execute(f"UPDATE users SET name = '{data["name"]}', email = '{data["email"]}', password = {data["password"]}, updated_at = '{TIMESTAMP DEFAULT CURRENT_TIMESTAMP["updated_at"]}' WHERE id = {id}")
+        self.cur.execute(f"UPDATE users SET name = '{data["name"]}', email = '{data["email"]}', password = {data["password"]}, updated_at = CURRENT_TIMESTAMP WHERE id = {id}")
         return self
 
     # Eilutės ištrynimas nurodant įrašo id
