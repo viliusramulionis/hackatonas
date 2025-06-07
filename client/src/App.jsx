@@ -9,19 +9,17 @@ import { EditProfile } from './pages/EditProfile';
 function App() {
   return (
     <div className="min-h-screen bg-[#111827] text-white">
-      <BrowserRouter>
+      <Router>
         <AuthProvider>
-          <Router>
-            <Navigation />
-            <Routes>
-              <Route path="/" element={<MainPage />} />
-              <Route path="/budies/:id" element={<BuddyCardDetailed />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/edit/profile/:id" element={<EditProfile />} />
-            </Routes>
-          </Router>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/budies/:id" element={<BuddyCardDetailed />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/edit/profile/:id" element={<EditProfile />} />
+          </Routes>
         </AuthProvider>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }
