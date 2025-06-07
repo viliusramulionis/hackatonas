@@ -44,6 +44,7 @@ def get_one(id):
 @user.route("/", methods=['POST'])
 def create():
     try :
+        
         user_model.insert_row(request.form)
         return jsonify("Jė jė!!! Naujas vartotojas sėkmingai sukurtas."), 200
     except :
