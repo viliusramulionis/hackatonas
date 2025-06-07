@@ -1,11 +1,13 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const BuddyCardDetailed = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const [buddy, setBuddy] = useState(null);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
     axios
@@ -30,9 +32,12 @@ const BuddyCardDetailed = () => {
     );
   }
 
+  // Check if logged-in user matches buddy's id to show Edit button
+  const showEditButton = currentUser && currentUser.id === buddy.id;
+
   return (
     <div className="min-h-screen flex items-center justify-center px-6 py-12 sm:px-12 sm:py-24">
-      <div className="max-w-4xl w-full bg-white rounded-3xl shadow-2xl flex flex-col md:flex-row gap-10 sm:gap-16 p-8 sm:p-16">
+      <div className="max-w-4xl w-full bg-[#f3f4f6] rounded-3xl shadow-2xl flex flex-col md:flex-row gap-10 sm:gap-16 p-8 sm:p-16">
         <div className="flex-shrink-0 flex justify-center items-center md:items-center">
           <img
             src={buddy.photo}
@@ -84,6 +89,16 @@ const BuddyCardDetailed = () => {
               <BigButton text="GitHub" url={buddy.github_url} />
             )}
           </div>
+
+          {/* Edit Profile Button: Only if user logged in and id matches */}
+          {showEditButton && (
+            <button
+              onClick={() => navigate("/edit/profile")}
+              className="mt-8 inline-block bg-indigo-600 text-white text-lg font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-indigo-700 transition"
+            >
+              Edit Profile
+            </button>
+          )}
         </div>
       </div>
     </div>

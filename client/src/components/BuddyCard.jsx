@@ -6,7 +6,7 @@ const BuddyCard = ({ buddy, onClick }) => {
     >
       <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-gray-600">
         <img
-          src={buddy.image || "https://via.placeholder.com/150"}
+          src={buddy.photo}
           alt={buddy.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />

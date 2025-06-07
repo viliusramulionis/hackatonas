@@ -10,20 +10,24 @@ const Navigation = () => {
     { label: "Register", to: "/register" },
   ];
 
+
+  const handleLinkClick = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <nav
-      className="relative w-full bg-white shadow-sm border-b border-gray-200
-        py-5 px-8 md:px-20"
+      className="relative w-full bg-white shadow-sm border-b border-gray-200 py-5 px-8 md:px-20"
       role="navigation"
       aria-label="Primary navigation"
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link
           to="/"
-          className="font-bold text-3xl tracking-widest text-gray-900 uppercase
-            cursor-pointer select-none transition-transform duration-200 ease-in-out hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 rounded"
+          className="font-bold text-3xl tracking-widest text-gray-900 uppercase cursor-pointer select-none transition-transform duration-200 ease-in-out hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 rounded"
           aria-label="Tech Buddies Home"
           tabIndex={0}
+          onClick={handleLinkClick}
         >
           Tech Buddies
         </Link>
@@ -33,15 +37,14 @@ const Navigation = () => {
           {navLinks.map(({ label, to }) => (
             <li key={label} className="relative group">
               <Link
-                to={to}
-                className="px-2 py-1 transition-colors duration-200 ease-in-out
+                to={to}                className="px-2 py-1 transition-colors duration-200 ease-in-out
                   hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 rounded"
                 tabIndex={0}
               >
                 {label}
               </Link>
               <span
-                className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-gray-900
+                  className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-gray-900
                   transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0 origin-center"
               />
             </li>
