@@ -1,8 +1,9 @@
-import "./App.css";
-import MainPage from "./pages/MainPage";
-import BuddyCardDetailed from "./components/BuddyCardDetailed";
-import Navigation from "./components/Navigation";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import './App.css';
+import MainPage from './pages/MainPage';
+import BuddyCardDetailed from './components/BuddyCardDetailed';
+import Navigation from './components/Navigation';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   return (
@@ -16,7 +17,6 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/edit/profile/:id" element={<EditProfile />} />
           </Routes>
-          <Footer />
         </Router>
       </AuthProvider>
     </div>
