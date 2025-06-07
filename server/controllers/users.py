@@ -1,8 +1,10 @@
 # Blueprint klasė yra reikalinga norint užregistruoti route'us prie bendros Flask aplikacijos
 # jsonify skirtas nurodyti turinio tipą
 # request reikalingas paimti užklausos informaciją (aka tai kas yra persiunčiama pvz prisijungimo info)
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, make_response
 from models.user import User
+import jwt
+import datetime
 
 user = Blueprint('users', __name__)
 user_model = User()
@@ -68,3 +70,24 @@ def delete(id):
     except :
         return jsonify("Atsiprašome, tačiau nepavyko ištrinti vartotojo, įvyko klaida."), 500
 
+@user.route("/login", methods=['POST'])
+def login():
+    secret_key = 'very very secret key'
+    auth = request.form
+
+    
+
+    if auth :
+        try :
+            if user_model.get_user_for_login(auth["email"], auth["password"]) :
+                token = jwt.encode({
+                    'user': 1,
+                    'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
+                }, secret_key, algorithm="HS256")
+                return jsonify({'token': token})
+            else :
+                return make_response('Could not verify', 401, {'WWW-Authenticate': 'Basic realm ="Login Required"'})
+        except :
+            return make_response('Could not verify', 401, {'WWW-Authenticate': 'Basic realm ="Login Required"'})
+
+    return make_response('Could not Verify', 401, {'WWW-Authenticate': 'Basic realm ="Login Required"'})

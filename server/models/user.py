@@ -22,6 +22,11 @@ class User(Database) :
         self.cur.execute(f"SELECT * FROM users WHERE id = {id};")
         return self.fetchone_as_dict()
 
+    # Vieno userio sugrąžinimas
+    def get_user_for_login(self, email, password) :
+        self.cur.execute(f"SELECT * FROM users WHERE email = '{email}' AND password = '{password}';")
+        return self.fetchone_as_dict()
+
     # Vienos eilutės pridėjimas
     def insert_row(self, data) :
         self.cur.execute(
