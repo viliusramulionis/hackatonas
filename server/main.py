@@ -1,5 +1,7 @@
 # save this as app.py
-from flask import Flask
+from flask import Flask, request, jsonify, make_response
+import jwt
+import datetime
 from controllers.users import user
 from flask_cors import CORS
 from controllers.budy import budy
@@ -23,6 +25,9 @@ app.register_blueprint(interests, url_prefix='/api/interests')
 
 #languages priregistravimas
 app.register_blueprint(languages, url_prefix='/api/languages')
+<<<<<<< HEAD
 
 
 # autentifikavimas
+=======
+>>>>>>> 3eb94db0b58fce91cb6759633d463e6c7650cd6f
