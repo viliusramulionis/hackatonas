@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
-from models.interests import Interets
+from models.interests import Interests
 
 interests = Blueprint('interests', __name__)
-interests_model = Interets()
+interests_model = Interests()
 
 # Prie kiekvieno route'o nurodome kelią ir http metodą.
 # Pagal pasirinktą veiksmo tipą priskiriame atitinkamą metodą pagal REST principą:
