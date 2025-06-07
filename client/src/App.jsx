@@ -1,11 +1,12 @@
-import './App.css'
+import "./App.css";
+import MainPage from "./pages/MainPage";
 
 function App() {
   return (
     <>
-     <h1>Labas as aldevinas</h1>
+      <MainPage />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
