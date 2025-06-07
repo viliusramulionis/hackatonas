@@ -41,7 +41,6 @@ def get_one(id):
 @budy.route("/", methods=['POST'])
 def create():
     try :
-        
         budy_model.insert_row(request.form)
         return jsonify("Jė jė!!! Naujas vartotojas sėkmingai sukurtas."), 200
     except :
