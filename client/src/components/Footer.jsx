@@ -1,5 +1,8 @@
 import { Link } from 'react-router';
 
+// This component allows users to filter members by programming language, 
+// But this component is unfinished and not used in UI yet (searchParams need to be setup)
+
 export const Footer = () => {
   return (
     <nav className="footer">

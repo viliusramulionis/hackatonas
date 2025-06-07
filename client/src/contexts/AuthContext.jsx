@@ -56,23 +56,13 @@ export const AuthProvider = ({ children }) => {
   }, [token]);
 
   // REGISTER
-  const register = async (name, email, password) => {
+  const register = async (formData) => {
     try {
       setError(null);
       setIsLoading(true);
 
       const response = await axios.post(`api/auth/register`, {
-        name,
-        email,
-        password,
-        languages,
-        github,
-        linkedin,
-        description,
-        location,
-        reason,
-        format,
-        slackUsername,
+        formData,
       });
 
       localStorage.setItem('access_token', response.data.access_token);

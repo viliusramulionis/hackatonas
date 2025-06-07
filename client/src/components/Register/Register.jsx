@@ -40,7 +40,21 @@ export const Register = () => {
     e.preventDefault();
 
     if (validateForm()) {
-      await register(name, email, password);
+      const formData = {
+        name,
+        email,
+        password,
+        languages,
+        github,
+        linkedin,
+        description,
+        location,
+        reason,
+        format,
+        slackUsername,
+      };
+
+      await register(formData);
     }
   };
 
