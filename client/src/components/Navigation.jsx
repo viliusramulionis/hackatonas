@@ -63,7 +63,7 @@ const Navigation = () => {
         >
           <span
             className={`block h-0.5 w-7 bg-gray-900 rounded transition-transform duration-300 origin-center
-              ${menuOpen ? "rotate-45 translate-y-[7px]" : ""}`}
+              ${menuOpen ? "rotate-45 translate-y-[9px]" : ""}`}
           />
           <span
             className={`block h-0.5 w-7 bg-gray-900 rounded transition-opacity duration-300
