@@ -7,10 +7,13 @@ function App() {
   return (
     <div className="min-h-screen bg-[#111827] text-white">
       <Router>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/budies/:id" element={<BuddyCardDetailed />} />
-        </Routes>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/users/:id" element={<BuddyCardDetailed />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
       </Router>
     </div>
   );

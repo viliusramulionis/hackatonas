@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
-from models.interests import Interests
+from models.languages import Languages
 
-interests = Blueprint('interests', __name__)
-interests_model = Interests()
+languages = Blueprint('languages', __name__)
+languages_model = Languages()
 
 # Prie kiekvieno route'o nurodome kelią ir http metodą.
 # Pagal pasirinktą veiksmo tipą priskiriame atitinkamą metodą pagal REST principą:
@@ -18,13 +18,13 @@ interests_model = Interests()
 # PATCH - kuomet atnaujinama tik vieno stulpelio reikšmė
 
 # VISI VARTOTOJAI
-@interests.route("/", methods=['GET'])
+@languages.route("/", methods=['GET'])
 def get_all():
     try :
         # Grąžinamas atgal tuple, pirma reikšmė JSON duomenys
         # Antra statuso kodas (Svarbu! nes pagal jį frontende bus orientuojamasi ar pavyko atlikti veiksmą)
         # Kiekviename route tikriname ar pavyko atlikti veiksmus ir grąžiname atitinkamas žinutes
         # Esant porekiui galime susigrąžinti klaidos kodą except bloke ir pagal jį siųsti atitinkamas žinutes
-        return jsonify(interests_model.get_rows()), 200
+        return jsonify(languages_model.get_rows()), 200
     except :
         return jsonify("Atsiprašome, tačiau nepavyko gauti duomenų, bandykite dar kartą."), 500
