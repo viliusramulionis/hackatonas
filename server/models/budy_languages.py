@@ -10,3 +10,4 @@ class Budy_languages(Database) :
         self.cur.execute("CREATE TABLE IF NOT EXISTS budy_languages (id INTEGER PRIMARY KEY AUTOINCREMENT, language_id INTEGER, budy_id INTEGER, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
 
 
+    
