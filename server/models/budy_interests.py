@@ -9,7 +9,6 @@ class Budy_interests(Database) :
         # Sukuriama naudojama lentelė user
         self.cur.execute("CREATE TABLE IF NOT EXISTS budy_interests (id INTEGER PRIMARY KEY AUTOINCREMENT, title INTEGER, priority INTEGER, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
 
-
     # Vienos eilutės pridėjimas
     def insert_row(self, data) :
         self.cur.execute(
