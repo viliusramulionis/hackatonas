@@ -4,8 +4,12 @@ from controllers.users import user
 from flask_cors import CORS
 
 from models.budy import Budy
+from models.budy_interests import Budy_interets
+from models.interests import Interets
 
 Budy()
+Budy_interets()
+Interets()
 
 app = Flask(__name__)
 
