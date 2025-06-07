@@ -4,6 +4,7 @@ import BuddyCardDetailed from './components/BuddyCardDetailed';
 import Navigation from './components/Navigation';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+import { Register } from './components/Register/Register';
 
 function App() {
   return (
