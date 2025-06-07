@@ -6,4 +6,45 @@ class Budy_interets(Database):
 
         super().__init__()
         self.cur.execute("CREATE TABLE IF NOT EXISTS budy_interests (id INTEGER PRIMARY KEY AUTOINCREMENT, interest_id INTEGER, budy_id INTEGER, created_at DATETIME, updated DATETIME)")
+
+ # Visų eilučių sugrąžinimas
+    def get_rows(self) :
+        self.cur.execute("SELECT * FROM users;")
+        return self.fetchall_as_dict()
+
+    # Vienos eilutės sugrąžinimas
+    def get_row(self, id) :
+        self.cur.execute(f"SELECT * FROM users WHERE id = {id};")
+        return self.fetchone_as_dict()
+
+    # Vienos eilutės pridėjimas
+    def insert_row(self, data) :
+        self.cur.execute(f"INSERT INTO users (name, email, password) VALUES('{data["name"]}', '{data["email"]}', {data["password"]});")
+        self.con.commit()
+        return self
+
+    # Eilutės atnaujinimas nurodant įrašo id ir modifikuotą informaciją
+    def update_row(self, id, data) :
+        self.cur.execute(f"UPDATE users SET name = '{data["name"]}', email = '{data["email"]}', password = {data["password"]} WHERE id = {id};")
+        return self
+
+    # Eilutės ištrynimas nurodant įrašo id
+    def delete_row(self, id):
+        self.cur.execute(f"DELETE FROM users WHERE id = {id};")
+        return self
     
+    # Konvertuoja fetchall() metodo rezultatą iš tuple į dictionary 
+    def fetchall_as_dict(self):
+        columns = [col[0] for col in self.cur.description]
+        return [dict(zip(columns, row)) for row in self.cur.fetchall()]
+    
+    # Kovertuoja fetchone() metodo rezultątą iš tuple į dictionary
+    def fetchone_as_dict(self):
+        row = self.cur.fetchone()
+        if row is None:
+            return None
+        columns = [col[0] for col in self.cur.description]
+        return dict(zip(columns, row))
+
+    def __del__(self) :
+        self.con.close()    
