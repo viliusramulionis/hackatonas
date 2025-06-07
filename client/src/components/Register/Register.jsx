@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
+import languagesData from '../../utils/languagesData';
 
 export const Register = () => {
   const [name, setName] = useState('');
@@ -13,6 +14,7 @@ export const Register = () => {
   const [linkedin, setLinkedin] = useState('');
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
+  const [reason, setReason] = useState('');
   const [format, setFormat] = useState('');
   const [slackUsername, setSlackUsername] = useState('');
 
@@ -94,14 +96,23 @@ export const Register = () => {
           </div>
 
           <div className="form-group">
-            <label>What languages do you work with?</label>
+            <label htmlFor="languages">What languages do you work with?</label>
             <select
+              multiple
               value={languages}
-              onChange={(e) => setLanguages(e.target.value)}
+              onChange={(e) => {
+                const selectedOptions = Array.from(
+                  e.target.selectedOptions
+                ).map((option) => option.value);
+                setLanguages(selectedOptions);
+              }}
               required
             >
-              <option value="python">Python</option>
-              <option value="javascript">Javascript</option>
+              {languagesData.map((lang) => (
+                <option key={lang.value} value={lang.value}>
+                  {lang.label}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -147,6 +158,21 @@ export const Register = () => {
               onChange={(e) => setLocation(e.target.value)}
               required
             />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="format">
+              Why would you like to join Tech Buddies?
+            </label>
+            <select
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+              required
+            >
+              <option value="helping">Help Others</option>
+              <option value="learning">Get Help</option>
+              <option value="friendships">Make Friends</option>
+            </select>
           </div>
 
           <div className="form-group">
