@@ -1,13 +1,13 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const BuddyCardDetailed = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [buddy, setBuddy] = useState(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   useEffect(() => {
     axios
@@ -93,7 +93,7 @@ const BuddyCardDetailed = () => {
           {/* Edit Profile Button: Only if user logged in and id matches */}
           {showEditButton && (
             <button
-              onClick={() => navigate("/edit/profile")}
+              onClick={() => navigate('/edit/profile')}
               className="mt-8 inline-block bg-indigo-600 text-white text-lg font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-indigo-700 transition"
             >
               Edit Profile
