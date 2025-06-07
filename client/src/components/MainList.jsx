@@ -5,7 +5,7 @@ const MainList = ({ buddies }) => {
   const navigate = useNavigate();
 
   const handleClick = (id) => {
-    navigate(`/users/${id}`);
+    navigate(`/budies/${id}`);
   };
 
   return (

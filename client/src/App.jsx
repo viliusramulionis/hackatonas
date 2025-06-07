@@ -9,7 +9,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/users/:id" element={<BuddyCardDetailed />} />
+          <Route path="/budies/:id" element={<BuddyCardDetailed />} />
         </Routes>
       </Router>
     </div>
