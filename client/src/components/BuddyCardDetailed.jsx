@@ -1,17 +1,17 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const BuddyCardDetailed = () => {
   const { id } = useParams();
   const [buddy, setBuddy] = useState(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   useEffect(() => {
     axios
       .get(`/api/budies/${id}`)
       .then((res) => setBuddy(res.data))
-      .catch(() => setError("Buddy not found."));
+      .catch(() => setError('Buddy not found.'));
   }, [id]);
 
   if (error) {
@@ -47,7 +47,7 @@ const BuddyCardDetailed = () => {
               {buddy.name}
             </h1>
             <p className="mt-4 sm:mt-6 max-w-3xl text-md sm:text-xl text-indigo-600 italic leading-relaxed">
-              {buddy.description || "No description provided."}
+              {buddy.description || 'No description provided.'}
             </p>
           </div>
 

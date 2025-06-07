@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from 'react';
-import { API_URL } from '../constants/global';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -37,7 +36,7 @@ export const AuthProvider = ({ children }) => {
             },
           };
 
-          const response = await axios.get(`${API_URL}/auth/user`, config);
+          const response = await axios.get(`api/auth/user`, config);
 
           setUser(response.data);
           setIsAuthenticated(true);
@@ -62,7 +61,7 @@ export const AuthProvider = ({ children }) => {
       setError(null);
       setIsLoading(true);
 
-      const response = await axios.post(`${API_URL}/auth/register`, {
+      const response = await axios.post(`api/auth/register`, {
         name,
         email,
         password,
@@ -80,7 +79,7 @@ export const AuthProvider = ({ children }) => {
       setToken(response.data.access_token);
       setUser(response.data.user);
       setIsAuthenticated(true);
-      navigate('/profile');
+      navigate('/budies/:id');
     } catch (error) {
       const errorMessage =
         axios.isAxiosError(error) && error.response?.data?.error
@@ -98,7 +97,7 @@ export const AuthProvider = ({ children }) => {
       setError(null);
       setIsLoading(true);
 
-      const response = await axios.post(`${API_URL}/auth/login`, {
+      const response = await axios.post(`api/auth/login`, {
         email,
         password,
       });
@@ -107,7 +106,7 @@ export const AuthProvider = ({ children }) => {
       setToken(response.data.access_token);
       setUser(response.data.user);
       setIsAuthenticated(true);
-      navigate('/profile');
+      navigate('/budies/:id');
     } catch (error) {
       const errorMessage =
         axios.isAxiosError(error) && error.response?.data?.error
