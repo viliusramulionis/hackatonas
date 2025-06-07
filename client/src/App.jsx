@@ -5,7 +5,7 @@ import Navigation from './components/Navigation';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { Register } from './components/Register/Register';
-
+import { EditProfile } from './pages/EditProfile';
 function App() {
   return (
     <div className="min-h-screen bg-[#111827] text-white">
