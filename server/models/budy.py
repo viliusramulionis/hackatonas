@@ -1,8 +1,12 @@
 from database import Database
 
 from models.languages import Languages
+from models.budy_languages import Budy_languages
 
-Languages()
+budy_languages = Budy_languages()
+
+# budy_languages.insert_row({ "language_id" : 1,  "budy_id" : 1})
+
 class Budy(Database) :
     # Kontruktorius
     def __init__(self) :
@@ -43,3 +47,12 @@ class Budy(Database) :
     def delete_row(self, id):
         self.cur.execute(f"DELETE FROM budy WHERE id = {id};")
         return self
+
+    def get_budy_languages(self, budy_id):
+        self.cur.execute(f"""
+            SELECT languages.title FROM budy
+            LEFT JOIN budy_languages ON budy_languages.budy_id = budy.id
+            LEFT JOIN languages ON languages.id = budy_languages.language_id
+            WHERE budy.id = {budy_id}
+            """,)
+        return self.cur.fetchall()

@@ -23,3 +23,6 @@ app.register_blueprint(interests, url_prefix='/api/interests')
 
 #languages priregistravimas
 app.register_blueprint(languages, url_prefix='/api/languages')
+
+
+# autentifikavimas

@@ -1,6 +1,7 @@
 import "./App.css";
 import MainPage from "./pages/MainPage";
 import BuddyCardDetailed from "./components/BuddyCardDetailed";
+import Navigation from "./components/Navigation";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -10,9 +11,7 @@ function App() {
           <Navigation />
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/users/:id" element={<BuddyCardDetailed />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/budies/:id" element={<BuddyCardDetailed />} />
           </Routes>
       </Router>
     </div>
