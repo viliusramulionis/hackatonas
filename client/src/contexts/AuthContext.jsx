@@ -66,6 +66,14 @@ export const AuthProvider = ({ children }) => {
         name,
         email,
         password,
+        languages,
+        github,
+        linkedin,
+        description,
+        location,
+        reason,
+        format,
+        slackUsername,
       });
 
       localStorage.setItem('access_token', response.data.access_token);

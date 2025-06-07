@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import MainList from "../components/MainList";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import MainList from '../components/MainList';
 
 const MainPage = () => {
   const [buddies, setBuddies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   useEffect(() => {
     axios
-      .get("/api/budies")
+      .get('/api/budies')
       .then((res) => {
         setBuddies(res.data);
         setLoading(false);
       })
       .catch(() => {
-        setError("Failed to fetch buddies.");
+        setError('Failed to fetch buddies.');
         setLoading(false);
       });
   }, []);
