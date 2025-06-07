@@ -1,14 +1,14 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
-import { AuthContext } from '../contexts/AuthContext';
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import axios from "axios";
+import { AuthContext } from "../contexts/AuthContext";
 
 const BuddyCardDetailed = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [buddy, setBuddy] = useState(null);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const { user } = useContext(AuthContext);
 
@@ -16,12 +16,12 @@ const BuddyCardDetailed = () => {
     axios
       .get(`/api/budies/${id}`)
       .then((res) => setBuddy(res.data))
-      .catch(() => setError('Buddy not found.'));
+      .catch(() => setError("Buddy not found."));
   }, [id]);
 
   if (error) {
     return (
-      <p className="text-center text-red-600 mt-20 text-2xl font-semibold">
+      <p className="text-center text-red-500 mt-20 text-2xl font-semibold">
         {error}
       </p>
     );
@@ -35,31 +35,30 @@ const BuddyCardDetailed = () => {
     );
   }
 
-  // Check if logged-in user matches buddy's id to show Edit button
   const showEditButton = user && user.id === buddy.id;
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 py-12 sm:px-12 sm:py-24">
-      <div className="max-w-4xl w-full bg-[#f3f4f6] rounded-3xl shadow-2xl flex flex-col md:flex-row gap-10 sm:gap-16 p-8 sm:p-16">
-        <div className="flex-shrink-0 flex justify-center items-center md:items-center">
+    <section className="min-h-screen flex items-center justify-center bg-[#111827] px-4 py-12">
+      <div className="max-w-5xl w-full bg-white text-gray-900 rounded-3xl shadow-2xl p-6 sm:p-12 flex flex-col md:flex-row gap-10">
+        <div className="flex flex-col items-center md:items-start">
           <img
             src={buddy.photo}
-            alt={buddy.name}
-            className="w-36 h-36 sm:w-56 sm:h-56 rounded-full object-cover border-8 border-indigo-200 shadow-xl transition-transform duration-500 hover:scale-110"
+            alt={`${buddy.name}'s profile`}
+            className="w-36 h-36 sm:w-48 sm:h-48 rounded-full object-cover border-8 border-[#bfc0ff] shadow-lg transition-transform hover:scale-110 duration-300"
           />
         </div>
 
-        <div className="flex-1 flex flex-col justify-center space-y-8 sm:space-y-12">
+        <div className="flex-1 flex flex-col gap-6 justify-center">
           <div>
-            <h1 className="text-3xl sm:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight">
+            <h1 className="text-4xl sm:text-5xl font-bold leading-tight">
               {buddy.name}
             </h1>
-            <p className="mt-4 sm:mt-6 max-w-3xl text-md sm:text-xl text-indigo-600 italic leading-relaxed">
-              {buddy.description || 'No description provided.'}
+            <p className="mt-2 text-lg sm:text-xl text-[#3535FF] italic">
+              {buddy.description || "No description provided."}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-y-8 gap-x-16 text-gray-700">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm sm:text-base">
             {buddy.location && (
               <LabeledInfo icon="📍" label="Location" value={buddy.location} />
             )}
@@ -75,7 +74,7 @@ const BuddyCardDetailed = () => {
                     href={`https://slack.com/app_redirect?channel=${buddy.slack_userid}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-indigo-600 font-semibold hover:underline"
+                    className="text-[#3535FF] font-semibold underline hover:text-[#1e1ebf] transition-colors"
                   >
                     Message on Slack
                   </a>
@@ -84,7 +83,7 @@ const BuddyCardDetailed = () => {
             )}
           </div>
 
-          <div className="flex flex-wrap gap-6 sm:gap-8 justify-center sm:justify-start">
+          <div className="flex flex-wrap gap-4 sm:gap-6 mt-4">
             {buddy.linkedin_url && (
               <BigButton text="LinkedIn" url={buddy.linkedin_url} />
             )}
@@ -93,29 +92,29 @@ const BuddyCardDetailed = () => {
             )}
           </div>
 
-          {/* Edit Profile Button: Only if user logged in and id matches */}
           {showEditButton && (
             <button
-              onClick={() => navigate('/edit/profile')}
-              className="mt-8 inline-block bg-indigo-600 text-white text-lg font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-indigo-700 transition"
+              onClick={() => navigate("/edit/profile")}
+              className="mt-6 self-start bg-[#3535FF] text-white font-medium px-6 py-2 rounded-full hover:bg-[#1e1ebf] transition-colors duration-300 shadow-md"
             >
               Edit Profile
             </button>
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
+// Helper: Icon + Label + Value
 const LabeledInfo = ({ icon, label, value }) => (
-  <div className="flex items-start space-x-4">
-    <div className="text-3xl sm:text-4xl flex-shrink-0">{icon}</div>
-    <div className="flex flex-col">
-      <p className="text-gray-400 uppercase tracking-wide font-semibold text-xs sm:text-sm">
+  <div className="flex items-start gap-3">
+    <div className="text-2xl">{icon}</div>
+    <div>
+      <p className="text-gray-500 uppercase text-xs font-bold tracking-wide">
         {label}
       </p>
-      <div className="text-lg sm:text-xl font-semibold">{value}</div>
+      <p className="text-lg font-semibold">{value}</p>
     </div>
   </div>
 );
@@ -125,7 +124,7 @@ const BigButton = ({ text, url }) => (
     href={url}
     target="_blank"
     rel="noopener noreferrer"
-    className="inline-block bg-indigo-600 text-white text-base sm:text-xl font-semibold px-8 py-3 sm:px-10 sm:py-4 rounded-full shadow-lg transition-transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-indigo-300"
+    className="inline-block bg-[#3535FF] text-white px-6 py-3 rounded-full font-semibold text-base shadow-md hover:bg-[#1e1ebf] transition-colors duration-300 hover:scale-105"
   >
     {text}
   </a>

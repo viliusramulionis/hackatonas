@@ -10,7 +10,6 @@ const Navigation = () => {
     { label: "Register", to: "/register" },
   ];
 
-
   const handleLinkClick = () => {
     setMenuOpen(false);
   };
@@ -24,8 +23,8 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link
           to="/"
-          className="font-bold text-3xl tracking-widest text-gray-900 uppercase cursor-pointer select-none transition-transform duration-200 ease-in-out hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 rounded"
-          aria-label="Tech Buddies Home"
+          className="text-[#3535FF] font-semibold text-3xl tracking-widest uppercase cursor-pointer select-none transition-transform duration-200 ease-in-out hover:scale-101 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3535FF] rounded"
+          style={{ textShadow: "0 0 6px rgba(127, 148, 252, 0.9)" }}
           tabIndex={0}
           onClick={handleLinkClick}
         >
@@ -37,14 +36,15 @@ const Navigation = () => {
           {navLinks.map(({ label, to }) => (
             <li key={label} className="relative group">
               <Link
-                to={to}                className="px-2 py-1 transition-colors duration-200 ease-in-out
-                  hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 rounded"
+                to={to}
+                className="px-2 py-1 transition-colors duration-200 ease-in-out
+                  hover:text-[#3535FF] hover:font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3535FF] rounded"
                 tabIndex={0}
               >
                 {label}
               </Link>
               <span
-                  className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-gray-900
+                className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-[#3535FF]
                   transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0 origin-center"
               />
             </li>
@@ -93,8 +93,9 @@ const Navigation = () => {
               <Link
                 to={to}
                 onClick={() => setMenuOpen(false)}
-                className="block px-4 py-2 rounded-md transition-colors duration-200 hover:bg-gray-900 hover:text-white
-                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
+                className="block px-4 py-2 rounded-md transition-colors duration-200
+                  hover:bg-[#3535FF] hover:text-white hover:font-bold
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3535FF]"
                 tabIndex={0}
               >
                 {label}

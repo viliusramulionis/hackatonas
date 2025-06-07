@@ -1,12 +1,11 @@
-import './App.css';
-import MainPage from './pages/MainPage';
-import BuddyCardDetailed from './components/BuddyCardDetailed';
-import Navigation from './components/Navigation';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
-import { Register } from './components/Register/Register';
-import { Login } from './components/Login/Login';
-import { EditProfile } from './pages/EditProfile';
+import MainPage from "./pages/MainPage";
+import BuddyCardDetailed from "./components/BuddyCardDetailed";
+import Navigation from "./components/Navigation";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   return (

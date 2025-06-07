@@ -1,31 +1,31 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
   const navigate = useNavigate();
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [languages, setLanguages] = useState([]); // available languages from API
-  const [selectedLanguages, setSelectedLanguages] = useState([]); // user selections
-  const [languagesError, setLanguagesError] = useState('');
-  const [github, setGithub] = useState('');
-  const [linkedin, setLinkedin] = useState('');
-  const [description, setDescription] = useState('');
-  const [location, setLocation] = useState('');
-  const [reason, setReason] = useState('');
-  const [format, setFormat] = useState('');
-  const [slackUsername, setSlackUsername] = useState('');
-  const [submitError, setSubmitError] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [languages, setLanguages] = useState([]);
+  const [selectedLanguages, setSelectedLanguages] = useState([]);
+  const [languagesError, setLanguagesError] = useState("");
+  const [github, setGithub] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
+  const [reason, setReason] = useState("");
+  const [format, setFormat] = useState("");
+  const [slackUsername, setSlackUsername] = useState("");
+  const [submitError, setSubmitError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     axios
-      .get('/api/languages')
+      .get("/api/languages")
       .then((res) => {
         const mapped = res.data.map((lang) => ({
           value: lang.title,
@@ -45,49 +45,42 @@ const Register = () => {
   };
 
   const validateForm = () => {
-    setPasswordError('');
-    setLanguagesError('');
-    setSubmitError('');
+    setPasswordError("");
+    setLanguagesError("");
+    setSubmitError("");
 
     if (password !== confirmPassword) {
-      setPasswordError('Passwords do not match');
+      setPasswordError("Passwords do not match");
       return false;
     }
     if (password.length < 6) {
-      setPasswordError('Password must be at least 6 characters long');
+      setPasswordError("Password must be at least 6 characters long");
       return false;
     }
     if (selectedLanguages.length === 0) {
-      setLanguagesError('Please select at least one language');
+      setLanguagesError("Please select at least one language");
       return false;
     }
     return true;
   };
 
   const register = async (data) => {
-  try {
-    setSubmitting(true);
-    const response = await axios.post('/api/users', data);
-    console.log('Registration success:', response.data);
-    navigate('/');
-  } catch (error) {
-    if (error.response) {
-      // Server responded with status outside 2xx
-      console.error('Server error:', error.response.data);
-      setSubmitError(error.response.data.message || 'Registration failed. Please try again later.');
-    } else if (error.request) {
-      // Request made but no response received
-      console.error('No response received:', error.request);
-      setSubmitError('No response from server. Please check your connection.');
-    } else {
-      // Something else happened
-      console.error('Error', error.message);
-      setSubmitError('An error occurred. Please try again later.');
+    try {
+      setSubmitting(true);
+      const response = await axios.post("/api/users", data);
+      console.log("Registration success:", response.data);
+      navigate("/");
+    } catch (error) {
+      if (error.response) {
+        console.error("Server error:", error.response.data);
+        setSubmitError(
+          error.response.data.message ||
+            "Registration failed. Please try again later."
+        );
+      }
+      setSubmitting(false);
     }
-    setSubmitting(false);
-  }
-};
-
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -113,7 +106,9 @@ const Register = () => {
   return (
     <div className="min-h-screen flex justify-center items-center p-6">
       <div className="max-w-xl w-full bg-white rounded-lg shadow-md p-8 text-gray-900">
-        <h2 className="text-3xl font-bold mb-6 text-center">Become A Tech Buddy</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center">
+          Become A Tech Buddy
+        </h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
@@ -159,7 +154,10 @@ const Register = () => {
           </div>
 
           <div>
-            <label htmlFor="confirmPassword" className="block mb-1 font-semibold">
+            <label
+              htmlFor="confirmPassword"
+              className="block mb-1 font-semibold"
+            >
               Confirm Password
             </label>
             <input
@@ -170,17 +168,23 @@ const Register = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
-            {passwordError && <p className="mt-1 text-red-600 text-sm">{passwordError}</p>}
+            {passwordError && (
+              <p className="mt-1 text-red-600 text-sm">{passwordError}</p>
+            )}
           </div>
 
           <fieldset>
             <legend className="block mb-2 font-semibold">
-              What languages do you work with? <span className="text-red-600">*</span>
+              What languages do you work with?{" "}
+              <span className="text-red-600">*</span>
             </legend>
             <div className="flex flex-wrap gap-3 max-h-40 overflow-y-auto border border-gray-300 rounded p-3 bg-white">
               {languages.length === 0 && <p>Loading languages...</p>}
               {languages.map(({ value, label }) => (
-                <label key={value} className="inline-flex items-center space-x-2 cursor-pointer">
+                <label
+                  key={value}
+                  className="inline-flex items-center space-x-2 cursor-pointer"
+                >
                   <input
                     type="checkbox"
                     name="languages"
@@ -193,7 +197,9 @@ const Register = () => {
                 </label>
               ))}
             </div>
-            {languagesError && <p className="mt-1 text-red-600 text-sm">{languagesError}</p>}
+            {languagesError && (
+              <p className="mt-1 text-red-600 text-sm">{languagesError}</p>
+            )}
           </fieldset>
 
           <div>
@@ -303,21 +309,25 @@ const Register = () => {
             />
           </div>
 
-          {submitError && <p className="text-red-600 text-center mb-2">{submitError}</p>}
+          {submitError && (
+            <p className="text-red-600 text-center mb-2">{submitError}</p>
+          )}
 
           <button
             type="submit"
             disabled={submitting}
-            className={`w-full bg-indigo-600 text-white font-semibold py-3 rounded hover:bg-indigo-700 transition ${
-              submitting ? 'opacity-70 cursor-not-allowed' : ''
+            className={`w-full font-semibold py-3 rounded transition-colors duration-300 text-white cursor-pointer ${
+              submitting
+                ? "bg-[#3535FF88] cursor-not-allowed"
+                : "bg-[#3535FF] hover:bg-[#1e1ebf]"
             }`}
           >
-            {submitting ? 'Registering...' : 'Register'}
+            {submitting ? "Logging in..." : "Login"}
           </button>
         </form>
 
         <p className="mt-6 text-center text-sm text-gray-600">
-          Already have an account?{' '}
+          Already have an account?{" "}
           <Link to="/login" className="text-indigo-600 hover:underline">
             Login here
           </Link>

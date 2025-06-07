@@ -3,7 +3,7 @@ import axios from "axios";
 
 const API_URL = "/api/users";
 
-export const EditProfile = ({ userId, onModalClose, onSubmit }) => {
+const EditProfile = ({ userId, onModalClose, onSubmit }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -107,9 +107,7 @@ export const EditProfile = ({ userId, onModalClose, onSubmit }) => {
             type="text"
             value={languages.join(", ")}
             onChange={(e) =>
-              setLanguages(
-                e.target.value.split(",").map((lang) => lang.trim())
-              )
+              setLanguages(e.target.value.split(",").map((lang) => lang.trim()))
             }
             className="w-full border px-3 py-2 rounded"
           />
@@ -208,3 +206,5 @@ export const EditProfile = ({ userId, onModalClose, onSubmit }) => {
     </div>
   );
 };
+
+export default EditProfile;

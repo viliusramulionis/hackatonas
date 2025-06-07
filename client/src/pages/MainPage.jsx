@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import MainList from '../components/MainList';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import MainList from "../components/MainList";
 
 const MainPage = () => {
   const [buddies, setBuddies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
     axios
-      .get('/api/budies')
+      .get("/api/budies")
       .then((res) => {
         setBuddies(res.data);
         setLoading(false);
       })
       .catch(() => {
-        setError('Failed to fetch buddies.');
+        setError("Failed to fetch buddies.");
         setLoading(false);
       });
   }, []);
@@ -24,7 +24,7 @@ const MainPage = () => {
     <main className="min-h-screen px-4 md:px-8 py-12 transition-colors duration-500">
       <div className="max-w-7xl mx-auto">
         <header className="mb-10 text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight mb-2">
+          <h1 className="text-4xl font-extrabold tracking-tight mb-2 uppercase">
             Meet the Community
           </h1>
           <p className="text-lg text-neutral-400">
