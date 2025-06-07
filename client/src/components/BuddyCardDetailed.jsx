@@ -1,6 +1,7 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useParams, useNavigate, useContext } from 'react-router-dom';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
+import { AuthContext } from '../contexts/AuthContext';
 
 const BuddyCardDetailed = () => {
   const { id } = useParams();
@@ -8,6 +9,8 @@ const BuddyCardDetailed = () => {
 
   const [buddy, setBuddy] = useState(null);
   const [error, setError] = useState('');
+
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     axios
@@ -33,7 +36,7 @@ const BuddyCardDetailed = () => {
   }
 
   // Check if logged-in user matches buddy's id to show Edit button
-  const showEditButton = currentUser && currentUser.id === buddy.id;
+  const showEditButton = user && user.id === buddy.id;
 
   return (
     <div className="min-h-screen flex items-center justify-center px-6 py-12 sm:px-12 sm:py-24">
