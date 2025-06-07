@@ -84,6 +84,7 @@ def login():
                     'user': 1,
                     'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
                 }, secret_key, algorithm="HS256")
+                
                 return jsonify({'token': token})
             else :
                 return make_response('Could not verify', 401, {'WWW-Authenticate': 'Basic realm ="Login Required"'})
